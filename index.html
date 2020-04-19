@@ -1,0 +1,245 @@
+<html>
+<head>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Nobile:400italic,700italic);
+    @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+    @import url(https://fonts.googleapis.com/css?family=Lateef);
+
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    }
+    body {
+      background: #E5E5E5;
+      background-image: url("/gray-floral.png");
+      padding: 50px;
+    }
+
+    #card-front {
+      color: #ccebff;
+    }
+
+    #card, #card-front, #card-inside {
+      height: 635px;
+    }
+
+    .wrap {
+        padding: 0.5em 0.5em;
+        height: 100%;
+    }
+    #card-front, #card-inside {
+      width: 50%;
+      -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+      -moz-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+      box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+      position: absolute;
+      left: 50%;
+    }
+
+
+    #card-inside .wrap {
+        background: #33bbff;
+        -webkit-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+        -moz-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+        box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    }
+    #card {
+        max-width: 960px;
+        margin: 0 auto;
+        transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        perspective: 5000px;
+        -moz-perspective: 5000px;
+        -webkit-perspective: 5000px;
+        position: relative;
+    }
+
+    #card h1 {
+        direction: rtl;
+        text-align: center;
+        font-family: 'Lateef', sans-serif;
+        font-style: italic;
+        font-size: 70px;
+        text-shadow: 
+            4px 4px 0px rgba(0, 0, 0, .15),
+            1px 1px 0 rgba(255, 200, 200, 255),
+            2px 2px 0 rgba(255, 150, 150, 255),
+            3px 3px 0 rgba(255, 125, 125, 255);
+        color: #FFF;
+    }
+
+    #card-inside {
+        direction: rtl;
+        font-size: 1.1em;
+        line-height: 1.4;
+        font-family: 'Lateef';
+        color: #ccebff;
+    }
+
+    p {
+        margin-top: 1em;
+    }
+
+    p:first-child {
+        margin-top: 0;
+    }
+
+    p.signed {
+        margin-top: 1.5em;
+        text-align: center;
+        font-family: 'Dancing Script', sans-serif;
+        font-size: 1.5em;
+    }
+
+    #card-front {
+        background-color: #99ccff;
+        background-image: linear-gradient(top, #99ccaa 0%, #99ccff 100%);
+        background-image: -moz-linear-gradient(top, #9900ff 0%, #99ccff 100%);
+        background-image: -webkit-linear-gradient(top, #00ccff 0%, #ffccff 100%);
+                transform-origin: left;
+           -moz-transform-origin: left;
+        -webkit-transform-origin: left;
+                transition:         transform 1s linear;
+           -moz-transition:    -moz-transform 1s linear;
+        -webkit-transition: -webkit-transform 1s linear;
+        position: relative;
+    }
+
+    #card-front .wrap {
+                transition: background 1s linear;
+           -moz-transition: background 1s linear;
+        -webkit-transition: background 1s linear;
+    }
+
+    #card-front button {
+      position: absolute;
+      bottom: 1em;
+      right: -12px;
+      background: #cc99ff;
+      color: #FFF;
+      font-family: 'Nobile', sans-serif;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 1.5em;
+      padding: .5em;
+      border: none;
+      cursor: pointer;
+              box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+         -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+      -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+    }
+
+    #card-front button:hover,
+    #card-front button:focus {
+      background: #c090f0;
+    }
+
+    #close {
+      display: none;
+    }
+
+    #card.open-fully #close,
+    #card-open-half #close {
+      display: inline;
+    }
+
+    #card.open-fully #open {
+      display: none;
+    }
+
+
+    #card.open-half #card-front,
+    #card.close-half #card-front {
+                transform: rotateY(-90deg);
+           -moz-transform: rotateY(-90deg);
+        -webkit-transform: rotateY(-90deg);
+    }
+    #card.open-half #card-front .wrap {
+        background-color: rgba(0, 0, 0, .5);
+    }
+
+    #card.open-fully #card-front,
+    #card.close-half #card-front {
+      background: #66ccff;
+    }
+
+    #card.open-fully #card-front {
+        transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -webkit-transform: rotateY(-180deg);
+    }
+
+    #card.open-fully #card-front .wrap {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    #card.open-fully #card-front .wrap *,
+    #card.close-half #card-front .wrap * {
+       display: none;
+    }
+
+    footer {
+      max-width: 500px;
+      margin: 40px auto;
+      font-family: 'Nobile', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="card">
+    <div id="card-inside">
+      <div class="wrap">
+        <p>تقدیم به بیتای من، ناناسترین ناناسا</p>
+        <p>اولین روزایی که دیدمت، با بچه ها میرفتیم پیاده روی یا بستنی و اینا. هر‌ بار‌ بیشتر عاشقت میشدم، انقدر دلنشین و مهربون و خوشگلی. خوش قد و بالا، باهوش، پر انرژی و خندون (زدم به تخته). اون روزا شاید باورم نمیشد که تو عاشق من بشی و الان با هم زندگی کنیم و عاشق و خوشبخت باشیم. خدا رو شکر، خدا رو شکر که من رو تحمل کردی، مطمینم هیچکسی انقدر تحملم نمیکرد. So yes, you are the winner.</p>
+        <p>خدا رو شکر برای اینکه به این دنیا اومدی که من ببینمنت و عاشقت بشم و هدف زندگیم بشه خوشحال کردن و دیدن خنده های خوشگلت. همین الان نگات کردم واقعا تو زیباترین آفرینش خدایی (زدم به تخته). من همیشه عاشقتم و زندگیم به پای توِ. ایشالا به امید خدا که همیشه خنده رو لبات باشه و خوشحال باشی عزیز دلم، همیشه سلامت و با انرژی باشی، ایشالا همیشه کنارم باشی و از زندگی راضی باشی عزیزم. ایشالا به همه آرزوهای قشنگت برسی عزیز دلم، امیدوارم موفق باشی و همیشه احساس رضایت کنی. امیدوارم تو کارت بهترین باشی و همیشه اعتماد به نفس داشته باشی. وقتی هم جایی سخنرانی داشتی من باشم و تشویقت کنم، امیدوارم تو هنر، پیانو و نقاشی موفق کلی پیشرفت کنی و از خودت راضی باشی، منم کلی بهت افتخار کنم.</p>
+        <p>از بودن کنارت، از زندگی باهات، از هم سفر بودن باهات لذت میبرم، خیلی موقع ها فکر میکنم چه لذتی میتونه از این بالاتر باشه و تو بزرگترین هدیه خدا به من هستی، همیشه سلامت و خندون باشی زندگیم. امیدوارم این داستان کرونا تموم شه، مامان اینا بیان بتونیم عقد بکنمییم، مامان بابا رو بگردونیم عشق کنیم، حال مامان سادات و مامان بزرگ بابا بزرگ خوب بشه، آریا به سلامتی به دنیا بیاد و سال خیلی خوبی داشته باشی نازنین من. تو همه کس منی، فرشته مهربون و خوشگل و باهوش و زیبای من ♥️</p>
+        <p>فدای تو، <br/>
+فلاس</p>
+      </div>
+    </div>
+
+    <div id="card-front">
+      <img class="wrap" src="https://lh3.googleusercontent.com/wQKI3ZWzVyWw4ZGtFsw56tbxsANv9eS88MIEvyUEGZh1gcGqR5j6JbTFYsZ3K-nYsoyu9XMJy7wxPX_UA3b_TOiaEyEkQ5_nJSEis1Bt0TgkyGKEcqplinnrPff8ESVC00w8D3HM-yvJawc9rGC6cjslGeOzHwQX-xw0QSR3YCu9AHEg0YBpLOuCynv1A9mqVlQSNzeV-hKe5_D1aIvsoMkqrfqR2L6rcCtuw3st-wPD-RrEDQ-Aalcs9v-hI_QNfXHw_DK-uOfqs5aSgTy4FvQtopJdEs88Q1EOSchqZisXw9fS7ZVMz_21rwswFUEOo1Ghm7ojmQ_O9Zk6OU4PPxNhq2LokfD0npuHSLjKAabz3Uwsr6bfKf-pTjRzTntO8L3KQ_EjcbLZaezbZfhxjlNmuEWSpRWfEBFqumUbI9r37nzdZLxal1IRBPU-CK57hPoBls7XDLZSi05W66a_5ih5vBSROh_ibHvI2e5_xK3obmRvme8RqPsaNoYagbhrypCFFbcC0p7Jzy55RAWRLaw6YEKc54oAdsNXizehD0svipKu83r2c0NCsEvHjWfkQcyQSIgcJHKOtC3zSuBvCce0l7LQhFc_Th-pS_B7o6G6cyA0qIzvocsDdJqi-AFGq2FzSZjUgHrZG8ZwolqzXBdGXRxmZ4hVXRFrv0V-dVjI_EcSQsnm8bXLhzzF=w737-h982-no"  alt="Birthday image"/>
+      <button id="open">&gt;</button>
+      <button id="close">&lt;</button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      var card = $('card'),
+          openB = $('open'),
+          closeB = $('close'),
+          timer = null;
+      openB.addEventListener('click', function () {
+        card.setAttribute('class', 'open-half');
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(function () {
+          card.setAttribute('class', 'open-fully');
+          timer = null;
+        }, 1000);
+      });
+
+      closeB.addEventListener('click', function () {
+        card.setAttribute('class', 'close-half');
+        if (timer) clearTimerout(timer);
+        timer = setTimeout(function () {
+          card.setAttribute('class', '');
+          timer = null;
+        }, 1000);
+      });
+
+    }());
+  </script>
+</body>
+</html>
